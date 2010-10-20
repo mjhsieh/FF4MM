@@ -1,3 +1,6 @@
+! Copyright (c) 2010, Mengjuei Hsieh,
+! All rights reserved. - please read information in "LICENCSE.txt"
+! Written by Mengjuei Hsieh, University of California Irvine
 #include "definitions.fpp"
 program unittest
 use tienchun
