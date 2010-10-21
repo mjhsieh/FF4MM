@@ -1,6 +1,7 @@
-c Copyright (c) 1998, Mengjuei Hsieh,
+c Copyright (c) 1998, 2010, Mengjuei Hsieh,
 c All rights reserved. - please read information in "LICENCSE.txt"
 c Written by Mengjuei Hsieh, National Tsing Hua University, HsinChu, Taiwan
+c         by Mengjuei Hsieh, University of California Irvine
       subroutine B_readpdb
       implicit none
 

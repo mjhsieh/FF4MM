@@ -1,0 +1,19 @@
+
+Amber Force Field Parameters
+Downloading force field files
+
+Chapter 2 of the AmberTools Users' Manual contains detailed information
+about how to specify a force field in Amber.  All of the files refererred to 
+there are collected in the following tar file:
+
+http://ambermd.org/amber10.ffparms.tar.bz2
+
+As has always been the case, the parameter information in the above file is
+in the public domain, and may be redistributed or used in other programs.
+Any such use should include proper citations, and any modifications to the
+parameters should be prominently noted.
+
+via http://ambermd.org/dbase.html
+For the archive:
+    http://web.archive.org/web/*/http://ambermd.org/dbase.html
+

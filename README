@@ -1,2 +1,9 @@
-This project is licensed under newBSD, see LICENSE.txt for the details.
+This project is mainly licensed under newBSD, see the file
+LICENSE.txt for the details.
+
+Please do note that some parts of this project are licensed
+as public domain, they are:
+amber/dat/leap/
+netlib/
+
 See NAME.txt for ideas of project naming.
