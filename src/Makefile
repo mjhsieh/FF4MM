@@ -4,15 +4,20 @@
 
 FC=ifort -FR
 FPP=cpp -traditional -P
-FORTFLAGS=-ip -O3 -xHost
-FLIB=
-#FLIB=-L/opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t /opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t/libmkl_intel_lp64.a /opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t/libmkl_sequential.a /opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t/libmkl_core.a -lpthread -lsvml
+FORTFLAGS=-ip -O3 -axSTP
+FLIB=-L/opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t \
+     /opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t/libmkl_intel_lp64.a \
+     /opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t/libmkl_sequential.a \
+     /opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t/libmkl_core.a \
+     -lpthread -lsvml
 
-#default:
-#	echo "no default rule"
+uOBJ=framework.o utilities.o vector.o
 
-unittest: f90vector.o unittest.o
-	$(FC) $(FOPTFLAGS) -o unittest f90vector.o unittest.o \
+default:
+	@echo "no default rule"
+
+unittest: $(uOBJ) unittest.o
+	$(FC) $(FOPTFLAGS) -o unittest unittest.o $(uOBJ) \
 	$(FLIB)
 
 install: unittest
@@ -22,19 +27,32 @@ uninstall:
 	rm -f ../bin/unittest
 
 clean:
-	rm -f tienchun.mod unittest f90vector.o unittest.o
-	rm -f _*.f
+	rm -f unittest unittest.o $(uOBJ)
+	rm -f *.mod _*.f
 
 .f.o: $<
 	$(FPP) $< > _$<
 	$(FC) -c $(FOPTFLAGS) -o $@ _$<
 
-f90vector.o: \
+framework.o: \
 	definitions.fpp
 
-unittest.o: \
+tienchun.mod: \
+	framework.o
+
+vector.o: \
+	definitions.fpp
+
+vec3d.mod: \
+	vector.o
+
+utilities.o: \
 	definitions.fpp \
 	tienchun.mod
 
-tienchun.mod: \
-	f90vector.o
+unittest.o: \
+	definitions.fpp \
+	tienchun.mod \
+	utilities.o \
+	vec3d.mod
+#        timer.o

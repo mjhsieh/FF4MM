@@ -2,56 +2,52 @@
 ! All rights reserved. - please read information in "LICENCSE.txt"
 ! Written by Mengjuei Hsieh, University of California Irvine
 #include "definitions.fpp"
-module tienchun
+! just for 3d
+module vec3d
    implicit none
 
 contains
 
-function vec3d_a2b(pos1,pos2)
+function vec3d_a2b(A,B)
    implicit none
-   _REAL_             :: vec3d_a2b(3)
-   _REAL_, intent(in) :: pos1(3), pos2(3)
+   _REAL_, dimension(3)             :: vec3d_a2b
+   _REAL_, dimension(3), intent(in) :: A
+   _REAL_, dimension(3), intent(in) :: B
    ! Periodic Boundary processing goes here.
    ! Arithmatics
-   vec3d_a2b=pos2-pos1
+   vec3d_a2b=B-A
 end function vec3d_a2b
 
-function vec3dlength(vecab)
+function vec3d_lsq(vecAB)
    implicit none
-   _REAL_             :: vec3dlength
-   _REAL_, intent(in) :: vecab(3)
-   vec3dlength=sqrt(dot_product(vecab,vecab))
-end function vec3dlength
+   _REAL_                           :: vec3d_lsq
+   _REAL_, dimension(3), intent(in) :: vecAB
+   vec3d_lsq = dot_product(vecAB,vecAB)
+end function vec3d_lsq
 
-! just for 3d
-function cross_product(r,s)
+function vec3d_l(vecAB)
    implicit none
-   _REAL_, dimension (3), intent(in) :: r,s
-   _REAL_, dimension (3) :: cross_product
-   ! local
-   integer :: n,i,j
+   _REAL_                           :: vec3d_l
+   _REAL_, dimension(3), intent(in) :: vecAB
+   vec3d_l = sqrt(vec3d_lsq(vecAB))
+end function vec3d_l
 
-   do n = 1,3
-      i = modulo(n,3) + 1
-      j = modulo(i,3) + 1
-      cross_product(n) = r(i)*s(j) - s(i)*r(j)
-   end do
-end function cross_product
+! ======================================================================
+!     MULTIPLY VECTORS A AND B AND RETURN _REAL_ RESULT
+! ======================================================================
+function vec3d_vxv(A,B)
+   implicit none
+   _REAL_, dimension (3)             :: vec3d_vxv
+   _REAL_, dimension (3), intent(in) :: A
+   _REAL_, dimension (3), intent(in) :: B
+   vec3d_vxv(1)=A(2)*B(3)-A(3)*B(2)
+   vec3d_vxv(2)=A(3)*B(1)-A(1)*B(3)
+   vec3d_vxv(3)=A(1)*B(2)-A(2)*B(1)
+end function vec3d_vxv
 
-end module tienchun
+end module vec3d
 
 #if 0
-c ======================================================================
-c     MULTIPLY VECTORS A AND B AND PUT THE real*8 RESULT IN C
-c ======================================================================
-      subroutine vxv(A,B,C)
-      real*8 A(3), B(3), C(3)
-      C(1)=A(2)*B(3)-A(3)*B(2)
-      C(2)=A(3)*B(1)-A(1)*B(3)
-      C(3)=A(1)*B(2)-A(2)*B(1)
-      RETURN
-      END
-
 c ======================================================================
 c     MULTIPLY TWO 3 X 3 MATRICES (OR 3 X 3 LEVELS OF HIGHER ORDER
 c     MATRICES) AND PUT THE real*8 RESULT IN MATRIX C.
@@ -106,25 +102,4 @@ c     VECTOR TIMES MATRIX; IF => 0, R EQUALS MATRIX X VECTOR.
       RETURN
       END
 
-c ======================================================================
-c     ADD OR SUBTRACT VECTORS A AND B AND PUT THE RESULT IN VECTOR C.
-c     MP=1 FOR ADD; MP=-1 FOR SUBTRACT. N=THE NUMBER OF ELEMENTS IN
-c     VECTOR A & B.
-c ======================================================================
-      subroutine vadd(A,B,C,MP,N)
-      integer I, JOUT
-      real*8 A(N),B(N),C(N)
-      DATA JOUT/6/
-
-      IF (MP.EQ.1 .OR. MP.EQ.-1) GO TO 2010
-      WRITE(JOUT,2001)
- 2001 FORMAT(' ERROR. OPERATOR NOT SPECIFIED.  RESULT EQUALS VECTOR A.')
-      MP=0
-
- 2010 DO I=1,N
-         C(I)=A(I)+MP*B(I)
-      enddo
-
-      RETURN
-      END
 #endif
