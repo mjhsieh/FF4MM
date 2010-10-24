@@ -15,6 +15,7 @@ subroutine TCStart
    allocate(    x(natom*3),stat=ierr(i)); i=i+1
    allocate(    f(natom*3),stat=ierr(i)); i=i+1
    allocate(    v(natom*3),stat=ierr(i)); i=i+1
+   allocate( oldv(natom*3),stat=ierr(i)); i=i+1
 
    if ( sum(ierr) > 0 ) then
       print *, "allocation error"; stop
@@ -23,5 +24,6 @@ subroutine TCStart
        x = 0d0
        f = 0d0
        v = 0d0
+    oldv = 0d0
    r_vdw = 0d0
 end subroutine TCStart

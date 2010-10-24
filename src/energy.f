@@ -2,7 +2,7 @@
 ! All rights reserved. - please read information in "LICENCSE.txt"
 ! Written by Mengjuei Hsieh, University of California Irvine
 #include "definitions.fpp"
-subroutine E_kinetic(KE,natom,mass,v)
+subroutine E_kinetic(KE,natom,mass,v,vold)
    implicit none
    integer, intent(in) :: natom 
    _REAL_, intent(out) :: KE
@@ -15,10 +15,11 @@ subroutine E_kinetic(KE,natom,mass,v)
 
    KE = 0d0; i1 = 1; i3 = 3
    do i=1, natom
-      tmpvec = v(i1:i3)
-      KE = KE + mass(i)*dot_product(tmpvec,tmpvec)
-      i1=i1+3; i3=i3+3
+      ! averaging the v from t0-dt/2 and t0+dt/2 (by dividing it latter)
+      tmpvec = v(i1:i3) + vold(i1:i3)
+      KE = KE + mass(i) * dot_product(tmpvec,tmpvec)
+      i1 = i1 + 3; i3 = i3 + 3
    enddo
    ! KE = 1/2 Σ mv**2
-   KE = KE * 0.5d0
+   KE = KE * 0.5d0 * 0.25d0
 end subroutine E_kinetic

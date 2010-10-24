@@ -56,7 +56,6 @@ unittest.o: \
 	utilities.o \
 	vec3d.mod \
 	energy.o
-#        timer.o
 
 constants.o: \
 	definitions.fpp

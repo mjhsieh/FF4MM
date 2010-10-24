@@ -11,6 +11,7 @@ subroutine unittest
    call TCStart
        x = (/1d0, 1d0, 2d0, 3d0, 5d0, 8d0/)
        v = (/-0.0254312,-0.1482216,0.2271172,-0.4594442,1.0257714,0.2857496/)
+    oldv = (/-0.0254312,-0.1482216,0.2271172,-0.4594442,1.0257714,0.2857496/)
     mass = (/4.0026d0, 4.0026d0/)
    l_pass = .true.; call test1! Vec(a to b)
    l_pass = .true.; call test2! Len(a to b)
