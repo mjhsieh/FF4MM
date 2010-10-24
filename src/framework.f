@@ -4,9 +4,12 @@
 #include "definitions.fpp"
 module tienchun
    integer natom
-   _REAL_, allocatable ::    x(:)
-   _REAL_, allocatable ::    f(:)
-   _REAL_, allocatable :: mass(:) 
+   _REAL_, allocatable ::     x(:)
+   _REAL_, allocatable ::     f(:)
+   _REAL_, allocatable ::     v(:)
+   _REAL_, allocatable ::  oldv(:)
+   _REAL_, allocatable ::  mass(:) 
+   _REAL_, allocatable :: r_vdw(:)
 
    ! Program Control
    _REAL_              :: vdwcutoff

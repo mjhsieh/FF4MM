@@ -11,7 +11,7 @@ FLIB=-L/opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t \
      /opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t/libmkl_core.a \
      -lpthread -lsvml
 
-uOBJ=framework.o utilities.o vector.o
+uOBJ=framework.o utilities.o vector.o energy.o
 
 default:
 	@echo "no default rule"
@@ -54,5 +54,12 @@ unittest.o: \
 	definitions.fpp \
 	tienchun.mod \
 	utilities.o \
-	vec3d.mod
+	vec3d.mod \
+	energy.o
 #        timer.o
+
+constants.o: \
+	definitions.fpp
+
+energy.o: \
+	definitions.fpp

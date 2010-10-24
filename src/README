@@ -1,0 +1,10 @@
+See the file ../LICENSE.txt for the licensing details current folder.
+
+* This project uses AMBER units
+  Energy ->    Kcal/mol
+                        (including LJ epsilon)
+  Time   -> 1/20.455 ps
+  Charge ->   18.2223 e (charge of a proton)
+  Length ->         1 Å
+                        (including VDW radii)
+  Mass   ->         1 u (unified atomic mass unit)
