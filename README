@@ -3,7 +3,7 @@ LICENSE.txt for the details.
 
 Please do note that some parts of this project are licensed
 as public domain, they are:
-amber/dat/leap/
-netlib/
+$projhome/amber/
+$projhome/netlib/
 
-See NAME.txt for ideas of project naming.
+See NAME.txt for ideas about names of this project.
