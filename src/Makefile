@@ -11,23 +11,23 @@ FLIB=-L/opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t \
      /opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t/libmkl_core.a \
      -lpthread -lsvml
 
-uOBJ=framework.o utilities.o vector.o energy.o
+OBJ=simplemm.o unittest.o framework.o utilities.o vector.o energy.o
 
-default:
-	@echo "no default rule"
-
-unittest: $(uOBJ) unittest.o
-	$(FC) $(FOPTFLAGS) -o unittest unittest.o $(uOBJ) \
+simplemm: $(OBJ)
+	$(FC) $(FOPTFLAGS) -o simplemm $(OBJ) \
 	$(FLIB)
 
-install: unittest
-	mv unittest ../bin/
+unittest: simplemm
+	ln -s simplemm unittest
+
+install: simplemm unittest
+	mv simplemm unittest ../bin/
 
 uninstall:
-	rm -f ../bin/unittest
+	rm -f ../bin/unittest ../bin/simplemm
 
 clean:
-	rm -f unittest unittest.o $(uOBJ)
+	rm -f unittest simplemm $(OBJ)
 	rm -f *.mod _*.f
 
 .f.o: $<

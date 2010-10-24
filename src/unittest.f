@@ -2,7 +2,7 @@
 ! All rights reserved. - please read information in "LICENCSE.txt"
 ! Written by Mengjuei Hsieh, University of California Irvine
 #include "definitions.fpp"
-program unittest
+subroutine unittest
    use tienchun
    implicit none
    logical l_pass
@@ -78,4 +78,4 @@ subroutine test1
       write(6,*)"Test on vector ab FAILED", myvectest-myvec
    endif
 end subroutine test1
-end program unittest
+end subroutine unittest
