@@ -16,6 +16,12 @@ subroutine unittest
    l_pass = .true.; call test1! Vec(a to b)
    l_pass = .true.; call test2! Len(a to b)
    l_pass = .true.; call test3! EKtot
+   usePIB = .true.
+   xmax=11;xmin=0
+   ymax=11;ymin=0
+   zmax=11;zmin=0
+!  l_pass = .true.; call test4! wrapping coordinates for particle in a box
+!  v = 0; oldv = 0
 !      x = (/1d0, 0d0, 0d0, 5d0, 0d0, 0d0/)
 !  r_vdw = (/1.4d0, 1.4d0/)
 
@@ -24,7 +30,7 @@ contains
 subroutine test3
    implicit none
    _REAL_ KE
-   call E_kinetic(KE,natom,mass,v)
+   call E_kinetic(KE,natom,mass,v,oldv)
    write(6,"(x,a,f10.4)")"Test on EKtot:",KE!need a standard
 end subroutine test3
 

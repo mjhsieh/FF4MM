@@ -3,7 +3,7 @@
 ! Written by Mengjuei Hsieh, University of California Irvine
 #include "definitions.fpp"
 module tienchun
-   integer natom
+   integer             :: natom
    _REAL_, allocatable ::     x(:)
    _REAL_, allocatable ::     f(:)
    _REAL_, allocatable ::     v(:)
@@ -11,10 +11,21 @@ module tienchun
    _REAL_, allocatable ::  mass(:) 
    _REAL_, allocatable :: r_vdw(:)
 
-   ! Program Control
+   ! System Feature
    _REAL_              :: vdwcutoff
    _REAL_              :: eelcutoff
+   _REAL_              ::      xmin, ymin, zmin
+   _REAL_              ::      xmax, ymax, zmax
+   ! Program Control
+   logical             :: usePBC
+   logical             :: usePIB !(particle in a box)
 end module tienchun
+
+subroutine force_gravity(atom1,atom2)
+end subroutine force_gravity
+
+subroutine force_littleg
+end subroutine force_littleg
 
 subroutine force_lj(A,B)
    implicit none

@@ -1,15 +1,19 @@
 # Copyright (c) 2010, Mengjuei Hsieh,
 # All rights reserved. - please read information in "LICENCSE.txt"
 # Written by Mengjuei Hsieh, University of California Irvine
+FPP=cpp -traditional -P
 
 FC=ifort -FR
-FPP=cpp -traditional -P
-FORTFLAGS=-ip -O3 -axSTP
+FOPTFLAGS=-ip -O3 -axSTP
 FLIB=-L/opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t \
      /opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t/libmkl_intel_lp64.a \
      /opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t/libmkl_sequential.a \
      /opt/intel/Compiler/11.1/084/Frameworks/mkl/lib/em64t/libmkl_core.a \
      -lpthread -lsvml
+FC=gfortran -ffree-form
+FOPTFLAGS=-O3 -mtune=generic -msse -mfpmath=sse
+FLIB=
+
 
 OBJ=simplemm.o unittest.o framework.o utilities.o vector.o energy.o
 
@@ -18,7 +22,7 @@ simplemm: $(OBJ)
 	$(FLIB)
 
 unittest: simplemm
-	ln -s simplemm unittest
+	ln -fs simplemm unittest
 
 install: simplemm unittest
 	mv simplemm unittest ../bin/
