@@ -25,6 +25,31 @@
 !     ==> r(t+δt) = 2*r(t) - r(t-δt) + δt*δt*a(t)
 !         v(t) = [r(t+δt) - r(t-δt)]/2/δt
 !      or v(t+½δt) = [r(t+δt)-t(t)]/δt
+!
+! Leap-frog Algorithm [Hockney 1970]:
+!     It explicitly includes the velocity and also does not require 
+!     the calculation of the differences of large numbers. However,
+!     it has the obvious disadvantage that the positions and 
+!     velocities are not synchronised:
+!     r(t+δt)  = r(t) + δt*v(t+½δt)
+!     v(t+½δt) = v(t-½δt) + δt*a(t)
+!
+! Velocity Verlet Method [Swope et al. 1982]
+!     Gives positions, velocities and accelerations at the same
+!     time and does not compromise precision:
+!     r(t+δt) = r(t) + δt*v(t) + ½δt*δt*a(t)
+!     v(t+δt) = v(t) + ½δt*[a(t) + a(t+δt)]
+!     ->  v(t+½δt) = v(t)     + ½δt*a(t)
+!         v(t+δt)  = v(t+½δt) + ½δt*a(t+δt)
+!
+! Beeman's Algorithm [Beeman 1976]
+!     r(t+δt) = r(t) + δt*v(t) + (2/3)*δt*δt*a(t) - (1/6)*δt*δt*a(t-δt)
+!     v(t+δt) = r(t) + (1/3)*δt*a(t) + (5/6)*δt*a(t) - (1/6)*δt*a(t-δt)
+
+
+
+
+subroutine verlet
 ! 1. Specify positions r(0,i) and r(1,i)
 ! 2. Compute the foreces at time step n: 	f(n,i)
 ! 3. Compute the positions at time step n+1:	r(n+1,i)
@@ -33,7 +58,6 @@
 !    as	v(n  ,i) = (r(n+1,i)-r(n-1,i))/(2*h)
 ! n -> nstep
 ! h -> dt
-subroutine verlet
 ! dtsq is δt^2; dt2 = 2δt
 !  implicit none
 !  integer i, i3, j
@@ -52,25 +76,15 @@ subroutine verlet
 !     enddo
 !  enddo
 end subroutine verlet
-! The leap-frog algorithm [Hockney 1970]:
-! r(t+δt)  = r(t) + δt*v(t+½δt)
-! v(t+½δt) = v(t-½δt) + δt*a(t)
-! it explicitly includes the velocity and also does not require the
-! calculation of the differences of large numbers. However, it has
-! the obvious disadvantage that the positions and velocities synchronised.
 subroutine leapfrog
 end subroutine leapfrog
-! the velocity Verlet method [Swope et al. 1982]
-! r(t+δt) = r(t) + δt*v(t) + ½δt*δt*a(t)
-! v(t+δt) = v(t) + ½δt*[a(t) + a(t+δt)]
-! Velocity form
+subroutine veloverlet
 ! 1. Specify the initial position r(1,i)
 ! 2. Specify the initial velocity v(1,i)
 ! 3. Compute the positions at time step n+1:	r(n+1,i)
 !    as	r(n+1,i) = r(n,i) + h*v(n,i) + h^2*f(n,i)/(2*m)
 ! 4. Compute the velocities at time step n:	v(n,i)
 !    as	v(n+1,i) = v(n,i) + h*(f(n+1,i)+f(n,i))/(2*m)
-subroutine veloverlet
 end subroutine veloverlet
 subroutine beeman
 end subroutine beeman
