@@ -1,0 +1,14 @@
+jkh notes:
+We first discuss a closed system for which the number of particles N,
+the volume V, and the total energy E are fixed. We also assume that 
+the system is isolated, i.e., that the influence of external parameters
+such as gravitational and magnetic fields can be ignored. A system with
+constant number of particles, constant volume and constant energy is 
+called a microcanonical ensemble.
+
+mjhsieh notes:
+   E0 = ½ mv^2 + V(r) is conserved
+   dE0/dt = ½ m 2 v a + dV/dt
+      =>   m v a + dV/dr dr/dt = m v a - F v
+         = m v a - m a v = 0
+      => conserved (since F = - dV/dr, = m*a )
