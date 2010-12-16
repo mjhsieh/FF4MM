@@ -1,3 +1,7 @@
+
+A molecular mechanics simulation framework inspired by AMBER.
+(http://ambermd.org)
+
 This project is mainly licensed under newBSD, see the file
 LICENSE.txt for the details.
 
