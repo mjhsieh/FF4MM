@@ -2,6 +2,14 @@
 ! All rights reserved. - please read information in "LICENCSE.txt"
 ! Written by Mengjuei Hsieh, University of California Irvine
 #include "definitions.fpp"
+subroutine TCInput
+   use tienchun
+   use amber_constants
+   implicit none
+   ! pseudo read-in
+   dt = 0.001*amber_tscale
+end subroutine TCInput
+
 subroutine TCStart
    use tienchun
    implicit none
@@ -19,7 +27,7 @@ subroutine TCStart
 
    if ( sum(ierr) > 0 ) then
       print *, "allocation error"; stop
-   end if
+   endif
     mass = 0d0
        x = 0d0
        f = 0d0
