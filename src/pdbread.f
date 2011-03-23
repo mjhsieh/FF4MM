@@ -39,6 +39,7 @@ c         by Mengjuei Hsieh, University of California Irvine
       mclist(0)  = 0
       reslist(0) = 0
 
+cccccc First lets start to rewrite this into a F90 program
  100  continue
 
       read(PDB_IO,'(a)',end=200) line

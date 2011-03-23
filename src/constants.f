@@ -19,6 +19,7 @@ module physical_constants
    ! Gravity: 9.81 m/s^2 = 9.81d10Å / s^2 = 9.81d-10Å / ps^2
    !        = 2.344607d-12Å
    _REAL_, parameter ::     LIT_G = 2.3446069d-12 !
+  !_REAL_,parameter :: pressure_constant = 6.85695d+4
 end module physical_constants
 
 ! from http://ambermd.org/Questions/units.html
@@ -29,4 +30,6 @@ end module physical_constants
 module amber_constants
    _REAL_, parameter :: amber_qscale = 18.2223d0 ! used to convert amber charge
    _REAL_, parameter :: amber_tscale = 20.455d0  ! 1ps == 20.455d0 * amber ps
+!  boltz2 = 8.31441d-3 * 0.5d0
+!  pconv = 1.6604345d+04  ! factor to convert the pressure kcal/mole to bar
 end module amber_constants
