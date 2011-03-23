@@ -1,4 +1,12 @@
+
 FF4MM	Fortran Framework for Molecular Modelling
-YASFFP	Yet Another Simulation Framework for Physics
-UCIPSF	University of California Irvine Physical Simulation Framework
-SCF4P	Sharable Computational Framework for Physics
+
+Future project names that I might pick up:
+ TNKMMF	Tanaka Molecular Modelling Framework
+	(Tanaka is a town in central Taiwan.)
+ MMLITE
+
+Oldnames that I considered and I am not going back to pick it up.
+ YASFFP	Yet Another Simulation Framework for Physics
+ UCIPSF	University of California Irvine Physical Simulation Framework
+ SCF4P	Sharable Computational Framework for Physics
